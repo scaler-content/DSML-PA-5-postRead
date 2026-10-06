@@ -1,0 +1,708 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RCA II — Case Study — Lecture 5</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-page:#F8FAFC;--bg-card:#FFFFFF;--bg-section:#F1F5F9;
+  --accent:#6366F1;--accent-dark:#4338CA;--accent-wash:#EEF2FF;
+  --blue:#0EA5E9;--green:#10B981;--amber:#F59E0B;--red:#EF4444;--purple:#8B5CF6;
+  --text-h:#0F172A;--text-b:#1E293B;--text-s:#64748B;--text-m:#94A3B8;
+  --border:#E2E8F0;--border-strong:#CBD5E1;
+  --r:8px;--rm:12px;--rl:16px;--maxw:1440px;--pad:clamp(24px,4vw,72px);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg-page:#0D1117;--bg-card:#161B27;--bg-section:#1A2235;
+  --text-h:#F1F5F9;--text-b:#CBD5E1;--text-s:#94A3B8;--text-m:#475569;--border:#1E293B;--border-strong:#334155;}}
+:root[data-theme="dark"]{
+  --bg-page:#0D1117;--bg-card:#161B27;--bg-section:#1A2235;
+  --text-h:#F1F5F9;--text-b:#CBD5E1;--text-s:#94A3B8;--text-m:#475569;--border:#1E293B;--border-strong:#334155;}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 52px)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg-page);color:var(--text-b);line-height:1.65;font-size:16px}
+h1{font-size:clamp(2.2rem,4vw,3rem);font-weight:700;color:#fff;line-height:1.15}
+h2{font-size:clamp(1.4rem,2.2vw,1.75rem);font-weight:600;color:var(--text-h);line-height:1.3;margin-bottom:8px}
+h3{font-size:1.05rem;font-weight:600;color:var(--text-h);margin-bottom:6px}
+p{color:var(--text-b);line-height:1.7}a{color:var(--accent);text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.sec{padding:64px 0}.sec-alt{background:var(--bg-section)}.measure{max-width:720px}
+.hero{background:var(--accent);padding:72px var(--pad) 84px;text-align:center}
+.hero-inner{max-width:var(--maxw);margin:0 auto}
+.hero-chip{display:inline-block;background:rgba(255,255,255,.18);color:#C7D2FE;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px}
+.hero-sub{font-size:clamp(1rem,1.4vw,1.2rem);color:#C7D2FE;max-width:660px;margin:18px auto 32px}
+.badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-badge{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.28);padding:8px 18px;border-radius:20px;font-size:14px;font-weight:500}
+.snav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg-card);border-bottom:1px solid var(--border);z-index:100;overflow-x:auto;white-space:nowrap;padding:0 var(--pad)}
+.snav-inner{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:center;flex-wrap:nowrap}
+.snav a{padding:15px 14px;font-size:13.5px;font-weight:500;color:var(--text-s);display:inline-block;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.snav a:hover{color:var(--accent)}.snav a.on{color:var(--accent);border-bottom-color:var(--accent)}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rm);padding:24px}
+.callout{background:var(--accent-wash);border-left:4px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:16px 20px;margin:16px 0}
+.callout p,.callout div{font-size:14.5px;color:var(--accent-dark)}
+.witty{background:var(--bg-section);border-left:3px solid var(--amber);border-radius:0 var(--r) var(--r) 0;padding:16px 20px;font-size:14.5px;color:var(--text-s);font-style:italic;margin:20px 0}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.mod2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+@media(max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.g2,.g3,.g4,.mod2{grid-template-columns:1fr}.sec{padding:44px 0}.hero{padding:48px 20px 56px}}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500}
+.t-blue{background:#E0F2FE;color:#0369A1}.t-green{background:#D1FAE5;color:#065F46}
+.t-amber{background:#FEF3C7;color:#92400E}.t-red{background:#FEE2E2;color:#991B1B}
+.t-purple{background:#EDE9FE;color:#5B21B6}.t-indigo{background:var(--accent-wash);color:var(--accent-dark)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--bg-section);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:13px;color:var(--text-b)}
+.rev-btn{width:100%;text-align:left;background:var(--bg-section);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;cursor:pointer;color:var(--accent);font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px;font-family:inherit}
+.rev-btn:hover{background:var(--accent-wash)}
+.rev-body{display:none;margin-top:12px}.rev-body.on{display:block}
+/* TABS */
+.ptabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.ptab{padding:9px 18px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:13.5px;font-weight:500;color:var(--text-s);background:var(--bg-card);font-family:inherit;transition:all .15s}
+.ptab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.pp{display:none}.pp.on{display:block}
+/* ANALOGY */
+.analogy{display:grid;grid-template-columns:0.85fr 1.15fr;gap:0;border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--bg-card)}
+@media(max-width:820px){.analogy{grid-template-columns:1fr}}
+.an-visual{padding:28px;display:flex;flex-direction:column;justify-content:center;gap:14px;color:#fff}
+.an-visual.umb{background:linear-gradient(135deg,#0EA5E9,#4338CA)}
+.an-visual.mop{background:linear-gradient(135deg,#8B5CF6,#0F172A)}
+.an-emoji{font-size:52px;line-height:1}
+.an-tag{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.an-title{font-size:1.35rem;font-weight:700;color:#fff;line-height:1.25}
+.an-premise{font-size:14.5px;color:rgba(255,255,255,.92);line-height:1.6}
+.an-map{padding:24px 28px;display:flex;flex-direction:column;gap:2px}
+.an-row{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--border)}
+.an-row:last-child{border-bottom:none}
+.an-ico{width:40px;height:40px;border-radius:10px;background:var(--bg-section);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.an-side{font-size:14px;color:var(--text-s);flex:1}.an-arrow{color:var(--text-m);font-weight:700;flex-shrink:0}
+.an-frame{font-size:14px;color:var(--text-h);font-weight:600;flex:1}
+/* QUIZ */
+.quiz{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rm);padding:24px}
+.quiz .qtag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.quiz .qq{font-size:15px;font-weight:600;color:var(--text-h);margin-bottom:16px}
+.qopts{display:flex;flex-direction:column;gap:10px}
+.qopt{text-align:left;background:var(--bg-section);border:1.5px solid var(--border);border-radius:var(--r);padding:12px 16px;cursor:pointer;font-size:14px;color:var(--text-b);font-family:inherit;transition:all .15s;display:flex;gap:10px;align-items:flex-start}
+.qopt:hover{border-color:var(--accent)}.qopt .qk{font-weight:700;color:var(--text-s);flex-shrink:0}
+.qopt.correct{background:#D1FAE5;border-color:var(--green);color:#065F46}.qopt.correct .qk{color:var(--green)}
+.qopt.wrong{background:#FEE2E2;border-color:var(--red);color:#991B1B}.qopt.wrong .qk{color:var(--red)}
+.qexp{display:none;margin-top:14px;background:var(--accent-wash);border-left:4px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:14px 16px;font-size:14px;color:var(--accent-dark)}
+.qexp.on{display:block}.qexp b{color:var(--text-h)}
+/* CODE */
+.code{background:#0F172A;border-radius:var(--r);padding:16px 18px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#E2E8F0;line-height:1.7;margin:14px 0}
+.code .c{color:#64748B}.code .k{color:#A5B4FC}.code .s{color:#6EE7B7}.code .f{color:#7DD3FC}
+/* TABLE */
+.tw-scroll{overflow-x:auto}
+.vtable{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rm);overflow:hidden}
+.vtable th,.vtable td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.vtable thead th{background:var(--bg-section);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-s)}
+.vtable tr:last-child td{border-bottom:none}.vtable td:first-child{font-weight:600;color:var(--text-h)}
+/* TIMESLOTS */
+.tslots{display:flex;gap:6px;margin:14px 0}
+.tslot{flex:1;border-radius:8px;padding:12px 8px;text-align:center;color:#fff}
+.tslot .tn{font-size:12.5px;font-weight:700}.tslot .th{font-size:11px;opacity:.9;margin-top:2px}
+@media(max-width:640px){.tslots{flex-wrap:wrap}.tslot{flex:1 1 30%}}
+/* AVAIL BAR */
+.availbar{display:flex;height:46px;border-radius:8px;overflow:hidden;font-weight:700;color:#fff;font-size:14px}
+.availbar .na{background:var(--red);width:58%;display:flex;align-items:center;justify-content:center}
+.availbar .av{background:var(--green);width:42%;display:flex;align-items:center;justify-content:center}
+/* HOUR BAR */
+.hbar{display:flex;height:26px;border-radius:6px;overflow:hidden;border:1px solid var(--border);margin:8px 0}
+.hbar span{flex:1;background:var(--bg-section);border-right:1px solid var(--bg-page)}
+.hbar span.hot{background:var(--red)}
+.hbar span:last-child{border-right:none}
+.hb-ax{display:flex;justify-content:space-between;font-size:10px;color:var(--text-m)}
+/* FIG */
+.fig{max-width:900px;margin:22px 0;border:1px solid var(--border);border-radius:var(--rm);overflow:hidden;background:var(--bg-card)}
+.fig img{display:block;width:100%;height:auto;background:var(--bg-section)}
+.fig figcaption{font-size:12.5px;color:var(--text-s);padding:10px 16px;border-top:1px solid var(--border);background:var(--bg-section)}
+.toollink{display:inline-flex;align-items:center;gap:8px;background:var(--accent-wash);color:var(--accent-dark);border:1px solid var(--border);border-radius:20px;padding:9px 16px;font-size:13.5px;font-weight:600;margin-top:6px}
+/* POCKET / TAKEAWAY */
+.pocket{background:#0F172A;border-radius:var(--rl);padding:36px}
+.pocket h3{color:#C7D2FE;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.prow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.pi{background:rgba(255,255,255,.1);border-radius:6px;padding:7px 13px;font-size:13.5px;color:#E2E8F0}
+.pi span{color:#818CF8;font-weight:700}
+.tw{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border)}
+.tw:last-child{border-bottom:none}
+.twn{width:30px;height:30px;background:var(--accent);color:#fff;border-radius:50%;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.iq-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rm);padding:24px}
+.mini{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rm);padding:20px}
+.mini .mk{height:32px;padding:0 12px;border-radius:8px;display:inline-flex;align-items:center;font-weight:700;color:#fff;font-size:13px;margin-bottom:10px}
+.stat{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rm);padding:20px;text-align:center}
+.stat .sv{font-size:1.8rem;font-weight:800;color:var(--accent)}
+.stat .sl{font-size:12.5px;color:var(--text-s);margin-top:2px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-chip">Lecture 5 · Product Analytics</div>
+    <h1>RCA II — Case Study</h1>
+    <p class="hero-sub">Last week we ran an RCA by reasoning. Today we run one with real data: 6,745 Uber requests, a notebook, and a hunt for the cause.</p>
+    <div class="badges">
+      <span class="hero-badge">Uber Case · 6,745 rows</span>
+      <span class="hero-badge">Supply-Demand Gap</span>
+      <span class="hero-badge">Feature Engineering</span>
+      <span class="hero-badge">Direct vs Root Cause</span>
+    </div>
+  </div>
+</header>
+
+<nav class="snav">
+  <div class="snav-inner">
+    <a href="#recap">Recap</a>
+    <a href="#scene">The Scene</a>
+    <a href="#problem">Problem</a>
+    <a href="#clarify">Clarify</a>
+    <a href="#data">The Data</a>
+    <a href="#gap">The Gap</a>
+    <a href="#fixes">Fixes</a>
+    <a href="#causes">Cause Types</a>
+    <a href="#competitors">Competitors</a>
+    <a href="#interview">Interview</a>
+    <a href="#pocket">Pocket</a>
+  </div>
+</nav>
+
+<!-- RECAP -->
+<section class="sec" id="recap">
+  <div class="wrap">
+    <div class="lbl">Where we left off</div>
+    <h2>Recap of Lecture 4</h2>
+    <p class="measure" style="margin-bottom:24px">You ran your first full RCA on the Myntra order-drop with the <strong>CRIED</strong> spine — scoped the problem, ruled out bugs, backtracked the funnel, and questioned suspects until the payment gateways confessed. Today: same method, now <strong>hands-on with data</strong>.</p>
+    <div class="g3">
+      <div class="mini"><div class="mk" style="background:var(--purple)">CRIED, again</div><p style="font-size:13.5px;color:var(--text-s)">Clarify → Rule Out → Internal → External — every hypothesis now testable against data.</p></div>
+      <div class="mini"><div class="mk" style="background:var(--blue)">Direct vs Root</div><p style="font-size:13.5px;color:var(--text-s)">We sharpen the difference between a cause you can see and the cause underneath.</p></div>
+      <div class="mini"><div class="mk" style="background:var(--green)">Competitor analysis</div><p style="font-size:13.5px;color:var(--text-s)">The "External" step, done properly — a rival's move can move your metric.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE -->
+<section class="sec sec-alt" id="scene">
+  <div class="wrap">
+    <div class="lbl">Setting the scene</div>
+    <h2>This Time, the Answer Is Buried in the Data</h2>
+    <div class="g2" style="gap:24px;align-items:stretch;margin-top:8px">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rm);padding:28px;border-top:4px solid var(--red)">
+        <div style="font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">🚕 Complaints piling up</div>
+        <p style="font-size:16px;color:var(--text-h);font-weight:600;line-height:1.5;margin-bottom:14px">On an Uber-style platform, riders can't find cabs on the City–Airport route, and drivers keep cancelling.</p>
+        <p style="font-size:14px;color:var(--text-s)">The supply-demand gap bleeds goodwill and revenue — people who can't get a cab to the airport don't forgive easily.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:14px">
+        <p style="font-size:15px;color:var(--text-b)">Aditi opens a notebook with <strong>6,745 ride requests</strong>. No single villain — the truth is a pattern hidden in timestamps and pickup points. Same RCA method, but now every hypothesis is one she can <strong>test against the data</strong>:</p>
+        <div class="chips">
+          <span class="chip">① Clarify</span><span class="chip">② Rule out</span><span class="chip">③ Explore</span><span class="chip">④ Diagnose</span>
+        </div>
+        <p style="font-size:14px;color:var(--text-s)">By the end she won't just say "there's a shortage." She'll pinpoint <strong>when and where</strong> cabs vanish, explain the mechanism, and recommend fixes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="sec" id="problem">
+  <div class="wrap">
+    <div class="lbl">Step 1 · Clarify the problem</div>
+    <h2>The Problem Statement</h2>
+    <div class="card" style="margin:20px 0;border-left:4px solid var(--red)">
+      <p style="font-size:15px;color:var(--text-h);margin-bottom:10px">Uber is getting complaints about <strong>ride cancellations by drivers</strong> and <strong>non-availability of cars</strong> on a specific route. The uneven supply-demand gap for cabs <strong>City ↔ Airport</strong> is hurting customer relationships and losing revenue.</p>
+      <p style="font-size:14px;color:var(--text-s)">Aim: identify the root cause (cancellations + non-availability) and recommend ways to tackle it.</p>
+    </div>
+    <div class="g2">
+      <div class="card"><div class="tag t-indigo" style="margin-bottom:8px">Define the metric</div><div style="background:var(--bg-section);border-radius:var(--r);padding:12px;font-size:13.5px;font-weight:600;color:var(--text-h)">Ride cancellation rate = cancelled bookings ÷ ride requests</div></div>
+      <div class="card"><div class="tag t-blue" style="margin-bottom:8px">Categorise cancellations</div><div class="chips"><span class="chip">City → Airport</span><span class="chip">Airport → City</span></div><p style="font-size:13px;color:var(--text-s);margin-top:8px">Then formulate hypotheses, split into Internal &amp; External, and validate one by one.</p></div>
+    </div>
+    <figure class="fig">
+      <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/230/051/original/ChatGPT_Image_Sep_16__2026__06_21_12_PM.png?1789563079" alt="Uber supply-demand problem" loading="lazy">
+      <figcaption>The Uber City↔Airport supply-demand problem.</figcaption>
+    </figure>
+    <div class="witty">🔁 "Formulate hypotheses, split into Internal &amp; External, validate one by one" is the <strong>CRIED life cycle</strong> from Scripts 1 &amp; 4, said in one line. Same playbook — now on data.</div>
+  </div>
+</section>
+
+<!-- CLARIFY -->
+<section class="sec sec-alt" id="clarify">
+  <div class="wrap">
+    <div class="lbl">Step 2 · Clarity on assumptions</div>
+    <h2>A Wall of Clarifying Questions</h2>
+    <p class="measure" style="margin-bottom:20px">Before touching a single row, ask the questions — then notice they're the same buckets you already know: <strong>Internal</strong>, <strong>External</strong>, and <strong>Segmentation</strong> (the "slice &amp; dice" from TROPiCS).</p>
+
+    <div class="ptabs">
+      <button class="ptab on" onclick="showP(this,'int')">🏠 Internal</button>
+      <button class="ptab" onclick="showP(this,'ext')">🌍 External</button>
+      <button class="ptab" onclick="showP(this,'seg')">🔪 Segmentation</button>
+    </div>
+    <div id="pp-int" class="pp on">
+      <div class="card"><ul class="chips" style="list-style:none"><span class="chip">Specific devices? (Android / iOS)</span><span class="chip">Any major product change / upgrade?</span><span class="chip">Issues on the driver app?</span><span class="chip">Any major complaints / bug reports?</span><span class="chip">Any recent platform experiments?</span><span class="chip">Region-wide connectivity issues?</span><span class="chip">Frequent app crashes?</span><span class="chip">Change in usual user behaviour?</span></ul></div>
+    </div>
+    <div id="pp-ext" class="pp">
+      <div class="card"><ul class="chips" style="list-style:none"><span class="chip">Any major holiday in the past week?</span><span class="chip">Recent driver strike or protest?</span><span class="chip">Any company controversy lately?</span><span class="chip">Are drivers using other ride-sharing platforms too?</span></ul></div>
+    </div>
+    <div id="pp-seg" class="pp">
+      <div class="card"><ul class="chips" style="list-style:none"><span class="chip">Is the increase gradual or sudden? (time pattern)</span><span class="chip">Uniform across regions, or region-specific?</span><span class="chip">High cancellation for a specific driver age group?</span><span class="chip">Pattern by vehicle category? (Auto / Mini / Sedan)</span></ul></div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div style="font-size:12px;font-weight:600;color:var(--text-s);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Then — what we'll actually look at in the data</div>
+      <ul class="chips" style="list-style:none">
+        <span class="chip">Cancelled requests per hour</span>
+        <span class="chip">Pickup &amp; destination of cancelled requests</span>
+        <span class="chip">Days of week with max cancellation</span>
+        <span class="chip">Time of day with peak cancellation</span>
+        <span class="chip">When demand is high &amp; supply low</span>
+        <span class="chip">When cabs are free but demand is low</span>
+      </ul>
+    </div>
+    <div class="witty">🧩 device / upgrade / experiments = <strong>Internal</strong> · holidays / strikes / controversy / competitors = <strong>External</strong> · region / age / vehicle category = <strong>Segmentation</strong>. Same TROPiCS lenses, new case.</div>
+  </div>
+</section>
+
+<!-- THE DATA -->
+<section class="sec" id="data">
+  <div class="wrap">
+    <div class="lbl">Steps 3 &amp; 4 · Explore + engineer</div>
+    <h2>Open the Notebook</h2>
+    <p class="measure" style="margin-bottom:20px">The dataset is small and clean — the work is in reshaping it into columns that can actually crack the case.</p>
+
+    <div class="g4" style="margin-bottom:20px">
+      <div class="stat"><div class="sv">6,745</div><div class="sl">ride requests (rows)</div></div>
+      <div class="stat"><div class="sv">6</div><div class="sl">columns</div></div>
+      <div class="stat"><div class="sv">0</div><div class="sl">duplicate rows</div></div>
+      <div class="stat"><div class="sv">58%</div><div class="sl">Not Available</div></div>
+    </div>
+
+    <div class="g2" style="align-items:start">
+      <div>
+        <h3 style="margin-bottom:8px">Exploratory checks</h3>
+        <p style="font-size:14px;color:var(--text-s);margin-bottom:10px">Columns: Request id, Pickup point, Driver id, Status, Request &amp; Drop timestamps. Two null columns are actually clues:</p>
+        <div class="tw-scroll">
+          <table class="vtable">
+            <thead><tr><th>Column</th><th>Null %</th><th>What it hints</th></tr></thead>
+            <tbody>
+              <tr><td>Driver id</td><td>39.29%</td><td>No driver ever assigned → cancelled / no cars</td></tr>
+              <tr><td>Drop timestamp</td><td>58.03%</td><td>Trip never completed → matches 58% "Not Available"</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px">Feature engineering</h3>
+        <p style="font-size:14px;color:var(--text-s);margin-bottom:10px">Manufacture the columns that will crack it: the request <strong>hour</strong>, a <strong>time slot</strong>, and a clean <strong>supply signal</strong>.</p>
+        <div class="code"><span class="c"># Bucket the hour into 5 time slots</span><br>df[<span class="s">"TimeSlot"</span>] = df[<span class="s">"RequestHour"</span>].<span class="f">apply</span>(<span class="k">lambda</span> x:<br>&nbsp;&nbsp;<span class="s">"Dawn"</span> <span class="k">if</span> x&lt;=4 <span class="k">else</span> (<span class="s">"Early Morning"</span> <span class="k">if</span> x&lt;=9<br>&nbsp;&nbsp;<span class="k">else</span> (<span class="s">"Noon"</span> <span class="k">if</span> x&lt;=16 <span class="k">else</span> (<span class="s">"Late Evening"</span> <span class="k">if</span> x&lt;=21<br>&nbsp;&nbsp;<span class="k">else</span> <span class="s">"Night"</span>))))<br><br><span class="c"># Supply = a completed trip; everything else = unmet demand</span><br>df[<span class="s">"Cab Availability"</span>] = df[<span class="s">"Status"</span>].<span class="f">apply</span>(<span class="k">lambda</span> x:<br>&nbsp;&nbsp;<span class="s">"Available"</span> <span class="k">if</span> x==<span class="s">"Trip Completed"</span> <span class="k">else</span> <span class="s">"Not Available"</span>)</div>
+      </div>
+    </div>
+
+    <h3 style="margin:24px 0 6px">The five time slots</h3>
+    <div class="tslots">
+      <div class="tslot" style="background:#4338CA"><div class="tn">Dawn</div><div class="th">00–04</div></div>
+      <div class="tslot" style="background:#6366F1"><div class="tn">Early Morning</div><div class="th">05–09</div></div>
+      <div class="tslot" style="background:#0EA5E9"><div class="tn">Noon</div><div class="th">10–16</div></div>
+      <div class="tslot" style="background:#F59E0B"><div class="tn">Late Evening</div><div class="th">17–21</div></div>
+      <div class="tslot" style="background:#0F172A"><div class="tn">Night</div><div class="th">22–23</div></div>
+    </div>
+
+    <h3 style="margin:24px 0 6px">Supply vs demand, overall</h3>
+    <div class="availbar" style="margin-bottom:8px"><div class="na">Not Available · 58%</div><div class="av">Available · 42%</div></div>
+    <p style="font-size:13.5px;color:var(--text-s)">More than half of all requests never became a completed trip — the gap we're chasing, in one number.</p>
+
+    <figure class="fig">
+      <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/230/061/original/ChatGPT_Image_Sep_16__2026__06_28_53_PM.png?1789563558" alt="Cab availability split" loading="lazy">
+      <figcaption>Collapsing raw statuses into a clean Available vs Not-Available supply signal.</figcaption>
+    </figure>
+
+    <div class="quiz" style="margin-top:16px">
+      <div class="qtag">Quiz 1 · Feature engineering — defining supply</div>
+      <div class="qq">The new "Cab Availability" column labels a request "Available" only when Status == "Trip Completed," and "Not Available" for everything else (Cancelled, No Cars Available). Why is this the right way to model supply vs demand?</div>
+      <div class="qopts">
+        <button class="qopt" data-k="A" onclick="pickQ(this,'B')"><span class="qk">A</span>It isn't — cancelled rides should count as supply</button>
+        <button class="qopt" data-k="B" onclick="pickQ(this,'B')"><span class="qk">B</span>A completed trip is the only proof a cab actually served the demand; every other status is unmet demand (a gap)</button>
+        <button class="qopt" data-k="C" onclick="pickQ(this,'B')"><span class="qk">C</span>Because "Trip Completed" is the most common status in the data</button>
+        <button class="qopt" data-k="D" onclick="pickQ(this,'B')"><span class="qk">D</span>Because it reduces the number of null values in Driver id</button>
+      </div>
+      <div class="qexp"><b>Answer: B.</b> Supply is only "real" when a rider actually got a completed trip. Cancellations and "No Cars Available" are demand that went unmet — exactly the gap we're investigating. Collapsing status into Available vs Not Available turns raw outcomes into a clean supply-demand signal (42% vs 58%).</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAP -->
+<section class="sec sec-alt" id="gap">
+  <div class="wrap">
+    <div class="lbl">Step 5 · In-depth analysis</div>
+    <h2>When and Where Do Cabs Vanish?</h2>
+    <p class="measure" style="margin-bottom:24px">Grouping by hour, pickup point and time slot reveals two mirror-image peaks — each failing for a different reason.</p>
+
+    <div class="g2" style="gap:20px;margin-bottom:20px">
+      <div class="card" style="border-top:3px solid var(--red)">
+        <div class="tag t-red" style="margin-bottom:10px">Airport → City</div>
+        <h3 style="margin-bottom:8px">Peak demand 5–9 PM</h3>
+        <div class="hbar" title="Hours 0-23">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="hot"></span><span class="hot"></span><span class="hot"></span><span class="hot"></span><span class="hot"></span><span></span><span></span>
+        </div>
+        <div class="hb-ax"><span>12 AM</span><span>12 PM</span><span>11 PM</span></div>
+        <p style="font-size:14px;margin-top:10px">Supply is very low — primarily <strong>'No Cars Available'</strong>.</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--amber)">
+        <div class="tag t-amber" style="margin-bottom:10px">City → Airport</div>
+        <h3 style="margin-bottom:8px">Peak demand 5–9 AM</h3>
+        <div class="hbar" title="Hours 0-23">
+          <span></span><span></span><span></span><span></span><span></span><span class="hot"></span><span class="hot"></span><span class="hot"></span><span class="hot"></span><span class="hot"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="hb-ax"><span>12 AM</span><span>12 PM</span><span>11 PM</span></div>
+        <p style="font-size:14px;margin-top:10px">Supply is very low — primarily <strong>Ride Cancellations</strong>.</p>
+      </div>
+    </div>
+
+    <div class="callout"><p><strong>Time-slot verdict:</strong> the <strong>Late Evening</strong> and <strong>Early Morning</strong> slots carry the highest gap — during evening &amp; morning hours the probability of getting a cab is very low. (Late Evening = 17–21, Early Morning = 05–09.)</p></div>
+
+    <figure class="fig">
+      <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/230/070/original/ChatGPT_Image_Sep_16__2026__06_31_13_PM.png?1789563698" alt="Demand-supply gap by hour and route" loading="lazy">
+      <figcaption>Demand-supply gap by hour and route — two peaks, two different failure modes.</figcaption>
+    </figure>
+
+    <div class="quiz" style="margin-top:16px">
+      <div class="qtag">Quiz 2 · Reading the demand-supply gap</div>
+      <div class="qq">The data shows heavy "No Cars Available" from Airport → City in the evening, and heavy "Cancellations" from City → Airport in the morning. What single mechanism best explains BOTH?</div>
+      <div class="qopts">
+        <button class="qopt" data-k="A" onclick="pickQ(this,'B')"><span class="qk">A</span>Drivers dislike airport routes for no reason</button>
+        <button class="qopt" data-k="B" onclick="pickQ(this,'B')"><span class="qk">B</span>Cabs pile up at the wrong end of the route — few completed trips in the prior hours leave no cars where the next surge of demand appears</button>
+        <button class="qopt" data-k="C" onclick="pickQ(this,'B')"><span class="qk">C</span>The app crashes only at the airport</button>
+        <button class="qopt" data-k="D" onclick="pickQ(this,'B')"><span class="qk">D</span>Riders request cabs they don't actually need</button>
+      </div>
+      <div class="qexp"><b>Answer: B.</b> It's a positioning problem. Because few trips completed in the previous hours, cars aren't where the next demand spike is — so the evening airport surge sees "No Cars Available," and the morning city surge sees drivers cancelling long, awkward airport pickups. One root mechanism, two symptoms.</div>
+    </div>
+
+    <!-- MECHANISM + UMBRELLA ANALOGY -->
+    <h3 style="font-size:1.15rem;margin:36px 0 6px">Step 6 · The mechanism, named</h3>
+    <div class="g2" style="align-items:start;margin-bottom:20px">
+      <div class="card" style="border-left:4px solid var(--red)">
+        <div class="tag t-red" style="margin-bottom:8px">Airport → City · 5–9 PM</div>
+        <p style="font-size:14px">High demand, low supply due to <strong>'No Cars Available'</strong> — because in the previous hours <em>fewer people travelled City → Airport</em>, so few cars are near the Airport.</p>
+      </div>
+      <div class="card" style="border-left:4px solid var(--amber)">
+        <div class="tag t-amber" style="margin-bottom:8px">City → Airport · 5–9 AM</div>
+        <p style="font-size:14px">High demand, low supply due to <strong>Ride Cancellations</strong> — few airport trips completed earlier, so cabs must come from far (City), then wait for the passenger, so drivers cancel.</p>
+      </div>
+    </div>
+
+    <div style="font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:8px 0 12px">🧩 Analogy</div>
+    <div class="analogy" style="margin-bottom:20px">
+      <div class="an-visual umb">
+        <div class="an-emoji">☂️</div>
+        <div class="an-tag">Not a shortage — a positioning problem</div>
+        <div class="an-title">Every umbrella is at the office when it starts raining at home</div>
+        <div class="an-premise">There are plenty of umbrellas — just never where you need one. Uber doesn't lack cabs; the cabs are stranded at the wrong end of the route when the next surge of demand hits.</div>
+      </div>
+      <div class="an-map">
+        <div class="an-row"><div class="an-ico">🌧️</div><div class="an-side">Rain starts at home</div><div class="an-arrow">→</div><div class="an-frame">Demand surges (airport 5–9 PM / city 5–9 AM)</div></div>
+        <div class="an-row"><div class="an-ico">🏢</div><div class="an-side">Umbrellas all at the office</div><div class="an-arrow">→</div><div class="an-frame">Cabs stranded at the opposite end</div></div>
+        <div class="an-row"><div class="an-ico">🌊</div><div class="an-side">You get soaked</div><div class="an-arrow">→</div><div class="an-frame">'No Cars Available' &amp; cancellations</div></div>
+        <div class="an-row"><div class="an-ico">☂️</div><div class="an-side">Keep umbrellas at both doors</div><div class="an-arrow">→</div><div class="an-frame">Pre-position cabs + incentivise waiting</div></div>
+      </div>
+    </div>
+    <figure class="fig">
+      <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/230/082/original/ChatGPT_Image_Sep_16__2026__06_36_57_PM.png?1789564023" alt="Reason for supply-demand gap" loading="lazy">
+      <figcaption>The stranded-cabs mechanism — supply positioned where the last trips ended, not where the next demand appears.</figcaption>
+    </figure>
+
+    <!-- AI HELP -->
+    <div class="card" style="margin-top:24px;border-top:3px solid var(--purple)">
+      <div style="font-size:12px;font-weight:600;color:var(--purple);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">🤖 How can AI help here?</div>
+      <p style="font-size:14.5px;margin-bottom:12px">Once the charts show <em>when</em> and <em>where</em> the gap happens, AI can help find the <em>why</em>. Give it the observations and ask for ranked hypotheses:</p>
+      <div style="background:var(--bg-section);border-radius:var(--r);padding:16px;font-size:14px;font-style:italic;margin-bottom:12px">"Airport→City has heavy 'No Cars Available' between 5–9 PM. City→Airport has heavy driver cancellations between 5–9 AM. Suggest 3 likely reasons that explain both, ranked."</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text-s);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">AI usually returns something like</div>
+      <ul class="ml" style="margin-bottom:14px">
+        <li>Cabs are stranded at the wrong end of the route, because few trips ran that way in the previous hours</li>
+        <li>Drivers avoid long, low-earning airport pickups that come with waiting time</li>
+        <li>Demand peaks (flight timings) don't line up with driver shift patterns</li>
+      </ul>
+      <div class="callout" style="margin:0"><p><strong>Your job as the analyst:</strong> keep only the hypotheses the data supports. Here, the hourly route charts confirm #1 and #2. Treat AI output as a list of hypotheses to <em>test</em>, not as the answer.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIXES -->
+<section class="sec" id="fixes">
+  <div class="wrap">
+    <div class="lbl">Step 7 · Recommendations</div>
+    <h2>Move the Supply to Meet the Demand</h2>
+    <div class="g3" style="margin:8px 0 20px">
+      <div class="mini"><div class="mk" style="background:var(--accent)">Waiting incentive</div><p style="font-size:13.5px;color:var(--text-s)">Reward drivers for waiting at the Airport.</p></div>
+      <div class="mini"><div class="mk" style="background:var(--blue)">Night-shift pay</div><p style="font-size:13.5px;color:var(--text-s)">Compensate drivers for the 00:00–05:00 slot.</p></div>
+      <div class="mini"><div class="mk" style="background:var(--purple)">Pre-position</div><p style="font-size:13.5px;color:var(--text-s)">Proactively place a few cabs at the Airport ahead of the surge.</p></div>
+      <div class="mini"><div class="mk" style="background:var(--green)">Airport-ride reward</div><p style="font-size:13.5px;color:var(--text-s)">Reward airport rides to make up for the lost time.</p></div>
+      <div class="mini"><div class="mk" style="background:var(--amber)">Wider discovery</div><p style="font-size:13.5px;color:var(--text-s)">Increase the cab-discovery range at the Airport for a wider search.</p></div>
+    </div>
+    <div class="quiz">
+      <div class="qtag">Quiz 3 · Fix the root cause, not the symptom</div>
+      <div class="qq">Given the root mechanism (cabs stranded at the wrong end of the airport route), which recommendation most directly attacks the cause rather than a symptom?</div>
+      <div class="qopts">
+        <button class="qopt" data-k="A" onclick="pickQ(this,'B')"><span class="qk">A</span>Show riders a nicer "no cars available" error message</button>
+        <button class="qopt" data-k="B" onclick="pickQ(this,'B')"><span class="qk">B</span>Incentivise drivers to wait at / take airport rides and pre-position cabs near the airport, so supply is where the next surge appears</button>
+        <button class="qopt" data-k="C" onclick="pickQ(this,'B')"><span class="qk">C</span>Temporarily hide the airport as a destination in the app</button>
+        <button class="qopt" data-k="D" onclick="pickQ(this,'B')"><span class="qk">D</span>Ask riders to book several hours in advance</button>
+      </div>
+      <div class="qexp"><b>Answer: B.</b> The gap exists because cars aren't positioned where demand will spike. Waiting incentives, airport-ride rewards and proactive pre-positioning move supply to meet demand — fixing the cause. A prettier error message or hiding the destination only masks the symptom.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CAUSE TYPES -->
+<section class="sec sec-alt" id="causes">
+  <div class="wrap">
+    <div class="lbl">Step 8 · The distinction</div>
+    <h2>Direct Causes vs Root Causes</h2>
+
+    <div style="font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:8px 0 12px">🧩 Analogy</div>
+    <div class="analogy" style="margin-bottom:24px">
+      <div class="an-visual mop">
+        <div class="an-emoji">🪣</div>
+        <div class="an-tag">Direct vs root cause</div>
+        <div class="an-title">Mopping the puddle vs fixing the leaking pipe</div>
+        <div class="an-premise">You can mop a puddle all day (fix the direct cause) but it returns every morning until you fix the pipe leaking above it (the root cause). Direct causes are visible and immediate; root causes are hidden and prevent recurrence when fixed.</div>
+      </div>
+      <div class="an-map">
+        <div class="an-row"><div class="an-ico">💧</div><div class="an-side">The puddle on the floor</div><div class="an-arrow">→</div><div class="an-frame">The symptom (the visible problem)</div></div>
+        <div class="an-row"><div class="an-ico">🧽</div><div class="an-side">Mopping it up</div><div class="an-arrow">→</div><div class="an-frame">Fixing the direct cause</div></div>
+        <div class="an-row"><div class="an-ico">🔧</div><div class="an-side">The leaking pipe above</div><div class="an-arrow">→</div><div class="an-frame">The root cause</div></div>
+        <div class="an-row"><div class="an-ico">🔁</div><div class="an-side">Puddle returns tomorrow</div><div class="an-arrow">→</div><div class="an-frame">The problem recurs until the root is fixed</div></div>
+      </div>
+    </div>
+
+    <div class="tw-scroll" style="margin-bottom:20px">
+      <table class="vtable">
+        <thead><tr><th>Aspect</th><th>Direct causes</th><th>Root causes</th></tr></thead>
+        <tbody>
+          <tr><td>Nature</td><td>Immediate factors that directly contribute to the problem</td><td>Underlying factors that give rise to the direct causes</td></tr>
+          <tr><td>Visibility</td><td>Evident and observable</td><td>Often hidden or not immediately apparent</td></tr>
+          <tr><td>Fixing it</td><td>Resolves the immediate problem</td><td>Prevents the problem from recurring</td></tr>
+          <tr><td>Focus</td><td>Symptoms and visible effects</td><td>The fundamental reasons behind the symptoms</td></tr>
+          <tr><td>Impact</td><td>Usually short-term</td><td>Often long-term</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="g2" style="margin-bottom:20px">
+      <div class="card" style="border-left:4px solid var(--amber)"><div class="tag t-amber" style="margin-bottom:8px">Direct causes (example)</div><ul class="ml"><li><strong>Incorrect assembly</strong> on the production line → functional issues</li><li><strong>Faulty component</strong> used in the product → malfunction</li></ul></div>
+      <div class="card" style="border-left:4px solid var(--green)"><div class="tag t-green" style="margin-bottom:8px">Root causes (example)</div><ul class="ml"><li><strong>Inadequate training</strong> → workers assembled it wrong</li><li><strong>Weak supplier QC</strong> → the faulty component got through</li><li><strong>No process monitoring</strong> → errors went undetected</li></ul></div>
+    </div>
+
+    <figure class="fig">
+      <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/230/092/original/ChatGPT_Image_Sep_16__2026__06_39_16_PM.png?1789564181" alt="Direct vs root causes" loading="lazy">
+      <figcaption>Direct causes are the symptoms you can see; root causes are the reasons underneath.</figcaption>
+    </figure>
+
+    <div class="quiz" style="margin-top:16px">
+      <div class="qtag">Quiz 4 · Direct cause or root cause?</div>
+      <div class="qq">A factory ships malfunctioning products. Investigation finds a faulty component from a supplier whose quality-control process is weak. In RCA terms, which is the root cause?</div>
+      <div class="qopts">
+        <button class="qopt" data-k="A" onclick="pickQ(this,'C')"><span class="qk">A</span>The malfunctioning product — it's what customers see</button>
+        <button class="qopt" data-k="B" onclick="pickQ(this,'C')"><span class="qk">B</span>The faulty component — it's the part that failed</button>
+        <button class="qopt" data-k="C" onclick="pickQ(this,'C')"><span class="qk">C</span>The supplier's weak quality-control process — the underlying factor that let the faulty component through</button>
+        <button class="qopt" data-k="D" onclick="pickQ(this,'C')"><span class="qk">D</span>There is no root cause; the failure was random</button>
+      </div>
+      <div class="qexp"><b>Answer: C.</b> The malfunction is the symptom and the faulty component is the direct cause — both are downstream and observable. The root cause is the supplier's inadequate quality control: fix that and you stop future faulty components (and malfunctions) at the source.</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section class="sec" id="competitors">
+  <div class="wrap">
+    <div class="lbl">Step 9 · The External arm</div>
+    <h2>Competitor Analysis</h2>
+    <div class="witty" style="margin-top:0">🌍 Competitor analysis is the <strong>External</strong> arm of RCA. A metric can dip not because you broke something, but because a rival launched a sale, a new tier or a better offer. Knowing the competitor cold is part of finding the root cause.</div>
+
+    <h3 style="font-size:1.1rem;margin:24px 0 10px">Amazon vs Flipkart</h3>
+    <div class="tw-scroll" style="margin-bottom:20px">
+      <table class="vtable">
+        <thead><tr><th>Aspect</th><th>Amazon</th><th>Flipkart</th></tr></thead>
+        <tbody>
+          <tr><td>Market presence</td><td>Global e-commerce giant across many countries</td><td>Prominent platform, primarily India</td></tr>
+          <tr><td>Product range</td><td>Vast — electronics, clothing, books &amp; more</td><td>Wide selection, focused on the Indian market</td></tr>
+          <tr><td>Pricing &amp; offers</td><td>Competitive pricing; Prime Day promotions</td><td>Discounts, deals, annual Big Billion Days</td></tr>
+          <tr><td>Customer base</td><td>Global, strong in the US</td><td>Mainly India, substantial user base</td></tr>
+          <tr><td>User experience</td><td>One-click purchase, personalised recommendations</td><td>Wishlist, user reviews, seamless flow</td></tr>
+          <tr><td>Delivery &amp; logistics</td><td>Efficient network; Prime fast shipping</td><td>Multiple options; Flipkart Plus expedited</td></tr>
+          <tr><td>Loyalty program</td><td>Amazon Prime (shipping + streaming)</td><td>Flipkart Plus rewards</td></tr>
+          <tr><td>Mobile apps</td><td>Well-developed shopping app</td><td>User-friendly app, Android &amp; iOS</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button class="rev-btn" onclick="toggleR(this)" style="max-width:420px">▶ &nbsp;Bonus: Uber vs Ola</button>
+    <div class="rev-body">
+      <div class="tw-scroll" style="margin-top:12px">
+        <table class="vtable">
+          <thead><tr><th>Aspect</th><th>Uber</th><th>Ola</th></tr></thead>
+          <tbody>
+            <tr><td>Market presence</td><td>Global ride-sharing giant, many countries</td><td>Leading in India, some international markets</td></tr>
+            <tr><td>Service range</td><td>UberX, Pool, Black, UberEats</td><td>Micro, Mini, Prime, Share</td></tr>
+            <tr><td>Pricing</td><td>Dynamic + surge pricing at peak</td><td>Similar dynamic pricing; cashback offers</td></tr>
+            <tr><td>User experience</td><td>Upfront pricing, real-time tracking, cashless</td><td>In-app payments, tracking, driver ratings</td></tr>
+            <tr><td>Ride options</td><td>Economy, premium, shared, larger groups</td><td>Micro, Mini, Prime, Ola Auto</td></tr>
+            <tr><td>Safety</td><td>Real-time tracking, SOS, background checks</td><td>In-app safety + local authority partnerships</td></tr>
+            <tr><td>Loyalty</td><td>Uber Rewards for frequent users</td><td>Ola Select — priority booking &amp; discounts</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="sec sec-alt" id="interview">
+  <div class="wrap">
+    <div class="lbl">Interview corner</div>
+    <h2>Practice Questions</h2>
+    <p class="measure" style="margin-bottom:28px">Frame your own answer first — then reveal the approach.</p>
+    <div class="mod2">
+      <div class="iq-card">
+        <div style="font-size:15px;font-weight:600;color:var(--text-h);margin-bottom:8px">Q1 — A ride app sees high cancellations on one route. How would you investigate with data?</div>
+        <span class="tag t-indigo" style="margin-bottom:14px;display:inline-block">Data-driven RCA</span>
+        <button class="rev-btn" onclick="toggleR(this)">▶ &nbsp;Show approach</button>
+        <div class="rev-body"><div style="background:var(--bg-section);border-radius:var(--r);padding:16px;margin-top:12px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:14px"><strong style="color:var(--accent)">Clarify:</strong> define cancellation rate; split by route (intercity vs airport); list Internal/External/Segmentation hypotheses.</div>
+          <div style="font-size:14px"><strong style="color:var(--blue)">Engineer:</strong> hour, time slot, and a clean supply signal (completed = available, else unmet demand).</div>
+          <div style="font-size:14px"><strong style="color:var(--purple)">Explore:</strong> gap by hour × pickup point × time slot to locate the peaks.</div>
+          <div style="font-size:14px"><strong style="color:var(--green)">Diagnose:</strong> name the mechanism (supply positioned at the wrong end), then recommend positioning fixes.</div>
+        </div></div>
+      </div>
+      <div class="iq-card">
+        <div style="font-size:15px;font-weight:600;color:var(--text-h);margin-bottom:8px">Q2 — Distinguish a direct cause from a root cause with an example.</div>
+        <span class="tag t-blue" style="margin-bottom:14px;display:inline-block">Concept</span>
+        <button class="rev-btn" onclick="toggleR(this)">▶ &nbsp;Show approach</button>
+        <div class="rev-body"><div style="background:var(--bg-section);border-radius:var(--r);padding:16px;margin-top:12px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:14px"><strong>Direct:</strong> the faulty component that failed — visible, immediate, short-term.</div>
+          <div style="font-size:14px"><strong>Root:</strong> the supplier's weak QC that let it through — hidden, underlying, long-term.</div>
+          <div style="font-size:14px"><strong style="color:var(--green)">Test:</strong> fixing the root prevents recurrence; fixing the direct cause only mops the puddle.</div>
+        </div></div>
+      </div>
+      <div class="iq-card">
+        <div style="font-size:15px;font-weight:600;color:var(--text-h);margin-bottom:8px">Q3 — Your orders dipped but nothing changed internally. Where do you look?</div>
+        <span class="tag t-purple" style="margin-bottom:14px;display:inline-block">External step</span>
+        <button class="rev-btn" onclick="toggleR(this)">▶ &nbsp;Show approach</button>
+        <div class="rev-body"><div style="background:var(--bg-section);border-radius:var(--r);padding:16px;margin-top:12px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:14px"><strong style="color:var(--purple)">Competitor analysis:</strong> did a rival launch a sale, a new tier or a better offer?</div>
+          <div style="font-size:14px"><strong>Other external:</strong> holidays, strikes, controversy, seasonality, macro shifts.</div>
+          <div style="font-size:14px">A metric can dip because a rival moved — not because you broke something. Know the competitor cold.</div>
+        </div></div>
+      </div>
+      <div class="iq-card">
+        <div style="font-size:15px;font-weight:600;color:var(--text-h);margin-bottom:8px">Q4 — Why engineer a "time slot" feature instead of just using the raw hour?</div>
+        <span class="tag t-green" style="margin-bottom:14px;display:inline-block">Feature engineering</span>
+        <button class="rev-btn" onclick="toggleR(this)">▶ &nbsp;Show approach</button>
+        <div class="rev-body"><div style="background:var(--bg-section);border-radius:var(--r);padding:16px;margin-top:12px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:14px">Raw hours are noisy (24 thin bars); grouping into Dawn / Early Morning / Noon / Late Evening / Night makes the pattern legible.</div>
+          <div style="font-size:14px">It surfaced the two worst slots (Late Evening &amp; Early Morning) cleanly — the insight was in the grouping, not the raw hour.</div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POCKET -->
+<section class="sec" id="pocket">
+  <div class="wrap">
+    <div class="lbl">Quick reference</div>
+    <h2 style="margin-bottom:20px">Data-RCA Pocket Card</h2>
+    <div class="pocket">
+      <div class="g2" style="gap:36px">
+        <div>
+          <h3>The data-RCA loop</h3>
+          <div class="prow">
+            <div class="pi"><span>1</span> Clarify + hypotheses</div>
+            <div class="pi"><span>2</span> Rule out (nulls/dupes/bugs)</div>
+            <div class="pi"><span>3</span> Engineer features</div>
+            <div class="pi"><span>4</span> Explore the gap</div>
+            <div class="pi"><span>5</span> Diagnose + fix root</div>
+          </div>
+          <h3>The Uber finding</h3>
+          <div class="prow">
+            <div class="pi">Airport→City 5–9 PM: <span>No Cars</span></div>
+            <div class="pi">City→Airport 5–9 AM: <span>Cancellations</span></div>
+            <div class="pi">Root: cabs at the wrong end</div>
+          </div>
+        </div>
+        <div>
+          <h3>Direct vs root</h3>
+          <div class="prow">
+            <div class="pi"><span>Direct</span> visible · immediate · short-term</div>
+            <div class="pi"><span>Root</span> hidden · underlying · prevents recurrence</div>
+          </div>
+          <h3>Key definitions</h3>
+          <div class="prow">
+            <div class="pi"><span>Cancel rate</span> cancelled ÷ requests</div>
+            <div class="pi"><span>Supply</span> = Trip Completed only</div>
+          </div>
+          <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:14px;font-size:13.5px;color:#C7D2FE;margin-top:4px">Competitor analysis = the <strong style="color:#fff">External</strong> arm of RCA.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section class="sec sec-alt" id="summary">
+  <div class="wrap">
+    <div class="lbl">Today's journey in one picture</div>
+    <h2 style="margin-bottom:6px">A Data-Driven RCA, Start to Finish</h2>
+    <figure class="fig">
+      <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/230/105/original/ChatGPT_Image_Sep_16__2026__06_43_52_PM.png?1789564439" alt="Data-driven RCA summary" loading="lazy">
+      <figcaption>Same CRIED spine as Myntra — now proven with code and charts.</figcaption>
+    </figure>
+
+    <h2 style="margin:36px 0 20px">Key Takeaways</h2>
+    <div class="card" style="max-width:960px">
+      <div class="tw"><div class="twn">1</div><div><div style="font-weight:600;color:var(--text-h);margin-bottom:4px">RCA on data is still CRIED</div><p style="font-size:14px;color:var(--text-s)">Clarify + hypotheses → rule out (nulls, dupes, bugs) → explore → diagnose. Every hypothesis is now testable against the data.</p></div></div>
+      <div class="tw"><div class="twn">2</div><div><div style="font-weight:600;color:var(--text-h);margin-bottom:4px">Feature engineering makes the pattern visible</div><p style="font-size:14px;color:var(--text-s)">Hour → time slot, and a clean supply signal (completed = available). The insight lived in the grouping — 58% of requests went unmet.</p></div></div>
+      <div class="tw"><div class="twn">3</div><div><div style="font-weight:600;color:var(--text-h);margin-bottom:4px">Two symptoms, one mechanism</div><p style="font-size:14px;color:var(--text-s)">Evening "No Cars" (Airport→City) and morning "Cancellations" (City→Airport) are both cabs stranded at the wrong end of the route.</p></div></div>
+      <div class="tw"><div class="twn">4</div><div><div style="font-weight:600;color:var(--text-h);margin-bottom:4px">Fix the cause, not the symptom</div><p style="font-size:14px;color:var(--text-s)">Pre-position cabs and incentivise waiting / airport rides — move supply to where demand will spike, don't just reword the error.</p></div></div>
+      <div class="tw"><div class="twn">5</div><div><div style="font-weight:600;color:var(--text-h);margin-bottom:4px">Direct ≠ root; competitors are External</div><p style="font-size:14px;color:var(--text-s)">Fix the root to prevent recurrence, and remember a rival's move can move your metric — competitor analysis is part of RCA.</p></div></div>
+    </div>
+
+    <div style="margin-top:28px;text-align:center;padding:36px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rm)">
+      <div style="font-size:13px;color:var(--text-s);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;font-weight:600">Up next</div>
+      <div style="font-size:24px;font-weight:700;color:var(--text-h);margin-bottom:4px">Guesstimates I</div>
+      <div style="font-size:14.5px;color:var(--text-s)">We switch from diagnosing data to <em>estimating</em> with it — structured, defensible guesses when there's no dataset at all.</div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#0F172A;padding:28px 20px;text-align:center">
+  <div style="font-size:13px;color:#475569">Scaler — Product Analytics Module &nbsp;·&nbsp; Lecture 5 of 12</div>
+</footer>
+
+<script>
+function showP(el,type){
+  var tabs=el.parentElement.querySelectorAll('.ptab');
+  tabs.forEach(function(t){t.classList.remove('on');});
+  el.classList.add('on');
+  ['int','ext','seg'].forEach(function(k){var e=document.getElementById('pp-'+k);if(e)e.classList.remove('on');});
+  document.getElementById('pp-'+type).classList.add('on');
+}
+function pickQ(btn,correct){
+  var box=btn.closest('.quiz');
+  box.querySelectorAll('.qopt').forEach(function(o){o.disabled=true;});
+  if(btn.getAttribute('data-k')===correct){btn.classList.add('correct');}
+  else{btn.classList.add('wrong');box.querySelector('.qopt[data-k="'+correct+'"]').classList.add('correct');}
+  box.querySelector('.qexp').classList.add('on');
+}
+function toggleR(btn){var b=btn.nextElementSibling,open=b.classList.contains('on');b.classList.toggle('on');var isApp=btn.textContent.indexOf('approach')>-1,isBonus=btn.textContent.indexOf('Bonus')>-1;if(isBonus){btn.innerHTML=open?'▶ &nbsp;Bonus: Uber vs Ola':'▼ &nbsp;Hide: Uber vs Ola';}else{var w=isApp?'approach':'answer';btn.innerHTML=(open?'▶ &nbsp;'+(isApp?'Show':'Reveal'):'▼ &nbsp;Hide')+' '+w;}}
+var secs=[].slice.call(document.querySelectorAll('section[id]'));
+var nav=[].slice.call(document.querySelectorAll('.snav a'));
+window.addEventListener('scroll',function(){
+  var cur='';secs.forEach(function(s){if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  nav.forEach(function(n){n.classList.remove('on');if(n.getAttribute('href')==='#'+cur)n.classList.add('on');});
+});
+</script>
+</body>
+</html>
+
+</body></html>
